@@ -1,0 +1,75 @@
+{% extends  'myapp/base.html' %}
+{%block body%}
+<!--Container which contains all the rows and columns -->	
+<div class="container-fluid">
+	<div class="row">
+<!--Span 12 columns -->	
+		<div class="col-md-12">
+			<!-- Displays the name of the application -->	
+			<div class="banner">
+				<div class="banner-text">
+					<!--Heading tag to display the name of the application -->	
+					<h1> Todo </h1>
+				</div>	
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+
+			<h4>Add task</h4>
+			<!--add shadow to cards -->	
+			<form class="p-3 shadow"method="POST">
+				{% csrf_token %}
+				<div class="form-group">
+					<input type="text" class="form-control" name="name" id="name" placeholder="Enter Task">
+			</div>
+				<div class="form-group">
+					<!--to display date and time -->	
+				<input type="date" class="form-control" name="date" id="date" >
+
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" name="priority" id="priority" placeholder="Enter Task Priority">
+
+					</div>
+				<!--Success for green colour button -->	
+					<input class="btn btn-success" type="submit">
+				</form>
+			</div>
+
+			<div class="col-md-6">
+
+
+				<h4>Tasks to be completed</h4>
+				<!--To get the individual task using for loop -->	
+				{% for task in task_list %}
+				<!-- -->	
+				<div class="p-3 shadow card">
+					<!--Contents will be inside card body -->	
+					<div class="card-body">
+						<h5 class="card-title">	{{task.name}}</h5>
+						<p><b>Priority: {{task.priority}}</b></p>
+						<!--To get the date field out of the task object -->	
+						<p><b>{{task.date}}</b></p>
+						<!--Done/Delete button -->	
+						<!--href is to create a link to another page -->	
+						<a class="btn btn-danger"href="{% url 'delete' task.id %}">Done</a>
+						<!--Update button -->	
+						<!--Success for green colour -->	
+						<a class="btn btn-success"href="{% url 'update' task.id %}">Update</a>
+					</div>
+				</div>
+				<!--To give space between cards -->	
+				<br>
+				{% endfor %}
+
+
+			</div>
+		</div>
+	
+
+
+</div>
+	
+{% endblock %}

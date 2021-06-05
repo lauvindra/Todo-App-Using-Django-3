@@ -1,0 +1,14 @@
+<!--base template for bootstrap styling -->	
+{% extends 'myapp/base.html' %}
+	{% block body %}
+<div class="p-3 shadow card">
+	<div class="card-body">
+	<h5 class="card-title">	{{task.name}} 
+	<p><b>Priority: {{task.priority}}</b></p>
+	<p><b>{{task.date}}</b></p>
+						
+	<a class="btn btn-danger"href="{% url 'delete' task.id %}">Done</a>
+	<a class="btn btn-success"href="{% url 'update' task.id %}">Update</a>
+		</div>
+	</div>	
+{% endblock %}

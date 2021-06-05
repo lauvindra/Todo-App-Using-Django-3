@@ -1,0 +1,9 @@
+<form method="POST">
+	<!-- csrf=Cross Site Request forgery -->
+	{% csrf_token %}
+	<!-- to layout all the elements of the form -->
+	{{form.as_p}}
+	<!-- submit button -->
+	<input type="submit">
+	
+</form>

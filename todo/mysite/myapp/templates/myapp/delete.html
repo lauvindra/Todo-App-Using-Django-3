@@ -1,0 +1,10 @@
+<!-- -->	
+{% extends 'myapp/base.html' %}
+{% block body %}
+<!--create a form to ask the user to delete the file-->	
+	<form method="POST">
+		{% csrf_token %}
+		<p><h5><p> Are you sure want to delete this task? <h5></p>
+		<button type="submit">Confirm</button>
+	</form>
+	{% endblock %}
